@@ -1,6 +1,6 @@
 #Nome topV1
-|Tables|Are|Cool|
+|Gates|Qtd|%|
 |---|---|---|
-|col 3 is|right-aligned|$1600|
-|col 2 is|centered|$12|
-|zebra stripes|are neat|$1|
+|input|8|(24/100)*8|
+|outpus|14|14|
+
