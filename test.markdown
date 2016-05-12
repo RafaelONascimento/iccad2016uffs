@@ -1,6 +1,6 @@
 #Nome topV1
-|Gates|Qtd|%|
+|Gates|Number|%|
 |---|---|---|
-|input|8|(24/100)*8|
-|outpus|14|14|
+|input|8|36.36|
+|outpus|14|63.64|
 
