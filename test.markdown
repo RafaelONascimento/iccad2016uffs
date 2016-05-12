@@ -1,17 +1,8 @@
-##GATE'S TABLE
-|GATES|NUMBER|%|
-|:---:|:---:|:---:|
-|INPUTS|8|36.36|
-|OUTPUTS|14|63.64|
-|**TOTAL**|**22**|**100**|
-
-##FUNCTION'S TABLE
-|FUNCTION|NUMBER|%|
-|:---:|:---:|:---:|
-|AND|14|23|
-|OR|12|19.7|
-|XOR|13|21.3|
-|NOR|22|36|
-|**TOTAL**|**61**|**100**|
+##BENCHMARK'S TABLE
+|TEST|GATES|AND|NAND|OR|NOR|XOR|XNOR|NOT|BUF|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|TEST1||||||||||
+|TEST2||||||||||
+|TEST3||||||||||
 
 
