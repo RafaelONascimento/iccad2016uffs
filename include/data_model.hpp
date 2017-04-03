@@ -5,23 +5,27 @@
 #include <stdexcept>
 
 namespace verilog {
+  enum class NegP { 
+    Positive, Negative   
+  };
+
   enum class LogicValue { 
-    Zero, True, False, Invalid
+    Zero, One, Undefined, Invalid
   };
 
   std::ostream & operator<<(std::ostream& o, LogicValue v) {
     switch(v) {
-      case LogicValue::True:
-        o << "LV::True";
-        break;
-      case LogicValue::False:
-        o << "LV::False";
-        break;
       case LogicValue::Zero:
-        o << "LV::Zero";
+        o << "0";
+        break;
+      case LogicValue::One:
+        o << "1";
+        break;
+      case LogicValue::Undefined:
+        o << "X";
         break;
       case LogicValue::Invalid:
-        o << "LV::Invalid";
+        o << "I";
         break;
     }
     return o;
@@ -29,9 +33,9 @@ namespace verilog {
 
   void checkValid(LogicValue v) {
     switch(v) {
-      case LogicValue::True:
+      case LogicValue::One:
         return;
-      case LogicValue::False:
+      case LogicValue::Zero:
         return;
       default:
         std::stringstream ss;
@@ -42,22 +46,22 @@ namespace verilog {
 
   LogicValue operator!(LogicValue v) {
     checkValid(v);
-    return (v == LogicValue::True) ? LogicValue::False : LogicValue::True;
+    return (v == LogicValue::One) ? LogicValue::Zero : LogicValue::One;
   }
 
   LogicValue fromBool(bool b) {
-    return b ? LogicValue::True : LogicValue::False;
+    return b ? LogicValue::One : LogicValue::Zero;
   }
 
   bool toBool(LogicValue v) {
     checkValid(v);
-    return v == LogicValue::True;
+    return v == LogicValue::One;
   }
 
   LogicValue operator&&(LogicValue v1, LogicValue v2) {
     checkValid(v1);
     checkValid(v2);
-    if (v1 == LogicValue::False)
+    if (v1 == LogicValue::Zero)
       return v1;
     return v2;
   }

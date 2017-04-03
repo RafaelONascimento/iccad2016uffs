@@ -23,8 +23,8 @@ using namespace std::chrono;
 
 
 void generate_match(Generator & g, 
-    graph::G & g1, 
-    graph::G & g2, 
+    graph::G_builder & g1, 
+    graph::G_builder & g2, 
     const ast::Verilog & v1,
     const ast::Verilog & v2,
     const int max_duration,
@@ -37,20 +37,20 @@ void generate_match(Generator & g,
   // TODO make this run for a long time
   for (;;) {
 
-    std::vector<bool>
+    std::map<std::string, bool>
       inputs_1,
       inputs_2,
       output_1, 
       output_2;
-    g.generate_inputs(inputs_1, v1.inputs.size());
-    g.generate_inputs(inputs_2, v2.inputs.size());
+    g.generate_inputs(v1.inputs, inputs_1);
+    g.generate_inputs(v2.inputs, inputs_2);
 
     simulate(inputs_1, output_1, g1);
     simulate(inputs_2, output_2, g2);
 
 
-    r1.account_for(output_1, v1.outputs);
-    r2.account_for(output_2, v2.outputs);
+    r1.account_for(output_1);
+    r2.account_for(output_2);
 
     system_clock::time_point t2 = system_clock::now();
     int duration = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
@@ -103,7 +103,7 @@ int main(int nargs, char** argv){
   int number;
   ss >> number;
 
-  graph::G g1, g2;
+  graph::G_builder g1, g2;
   convert(v1, g1);
   convert(v2, g2);
 
