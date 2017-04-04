@@ -53,6 +53,7 @@ namespace verilog {
 	    }
 	    else{
 	      index = indexNodes[it.parameters[i]];
+		  nodes[index].type = it.op;
 	      nodes[index].parameters.push_back(it.parameters[size]);
 	      nodes[index].checked = false;
 	    }
